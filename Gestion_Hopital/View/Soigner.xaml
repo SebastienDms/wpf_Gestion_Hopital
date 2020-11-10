@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBox AcceptsReturn="True" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-        <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" Grid.RowSpan="2" >
+        <Grid Name="UneFiche" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=OneWay}" Grid.RowSpan="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -53,13 +53,13 @@
                      Text="{Binding Path=UnSoigner.DateOperation, Mode=TwoWay}" />
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="142,3,141,3" Width="114" >
-            <Button Name="bConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding cConfirmer}" />
-            <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}"
-           Command="{Binding cAnnuler}" />
+            <Button Name="bConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=OneWay}"
+           Command="{Binding cConfirmerSoi}" />
+            <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=OneWay}"
+           Command="{Binding cAnnulerSoi}" />
         </StackPanel>
         <DataGrid Name="dgSoigners" ItemsSource="{Binding Path=ListOccupations}" Grid.Row="3" VerticalScrollBarVisibility="Visible"
-            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+            IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=OneWay}"
             SelectedItem="{Binding SoignerSelectionne, Mode=TwoWay}" SelectionChanged="dgSoigners_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDSoin}" />
@@ -71,14 +71,14 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" Margin="80,3,80,3" Width="228" >
-            <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cAjouter}" />
-            <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cModifier}" />
-            <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cSupprimer}" />
-            <Button x:Name="bEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFiche, Mode=OneWay}"
-           Command="{Binding cEssaiSelMult}"
+            <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=OneWay}"
+           Command="{Binding cAjouterSoi}" />
+            <Button Name="bModifier" Content="Modifier" Margin="3" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=OneWay}"
+           Command="{Binding cModifierSoi}" />
+            <Button Name="bSupprimer" Content="Supprimer" Margin="3" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=OneWay}"
+           Command="{Binding cSupprimerSoi}" />
+            <Button x:Name="bEssaiSelMult" Content="Sél. Mult." Margin="3" IsEnabled="{Binding ActiverBcpFicheSoi, Mode=OneWay}"
+           Command="{Binding cEssaiSelMultSoi}"
            CommandParameter="{Binding ElementName=dgSoigners, Path=SelectedItems}" />
         </StackPanel>
         <RichTextBox Name="rtbDoc" Grid.Column="1" Grid.RowSpan="5" />

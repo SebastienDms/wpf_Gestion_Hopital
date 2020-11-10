@@ -157,7 +157,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Name="UneFicheSoigner" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}">
+            <Grid Grid.Row="0" Name="UneFicheSoigner" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=OneWay}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -194,12 +194,12 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,3" Width="Auto" >
-                    <Button Name="bAjouterS" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=TwoWay}"
-                            Command="{Binding cAjouter}" CommandParameter="{Binding ActiverUneFiche}" />
-                    <Button Name="bConfirmerS" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
-                            Command="{Binding cConfirmer}" />
-                    <Button Name="bAnnulerS" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
-                            Command="{Binding cAnnuler}" />
+                    <Button Name="bAjouterS" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=TwoWay}"
+                            Command="{Binding cAjouterSoi}" CommandParameter="{Binding ActiverUneFiche}" />
+                    <Button Name="bConfirmerS" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=TwoWay}"
+                            Command="{Binding cConfirmerSoi}" />
+                    <Button Name="bAnnulerS" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=TwoWay}"
+                            Command="{Binding cAnnulerSoi}" />
                 </StackPanel>
             </Grid>
         </Grid>

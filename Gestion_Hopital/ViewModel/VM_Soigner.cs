@@ -13,21 +13,21 @@ namespace Gestion_Hopital.ViewModel
         #region Données Écran
         private string chConnexion = @"Data Source=DESKTOP-GES02KU;Initial Catalog=BD_Hopital;Integrated Security=True";
         private int nAjout;
-        private bool _ActiverUneFiche;
-        public bool ActiverUneFiche
+        private bool _ActiverUneFicheSoi;
+        public bool ActiverUneFicheSoi
         {
-            get { return _ActiverUneFiche; }
+            get { return _ActiverUneFicheSoi; }
             set
             {
-                AssignerChamp<bool>(ref _ActiverUneFiche, value, System.Reflection.MethodBase.GetCurrentMethod().Name);
-                ActiverBcpFiche = !ActiverUneFiche;
+                AssignerChamp<bool>(ref _ActiverUneFicheSoi, value, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                ActiverBcpFicheSoi = !ActiverUneFicheSoi;
             }
         }
-        private bool _ActiverBcpFiche;
-        public bool ActiverBcpFiche
+        private bool _ActiverBcpFicheSoi;
+        public bool ActiverBcpFicheSoi
         {
-            get { return _ActiverBcpFiche; }
-            set { AssignerChamp<bool>(ref _ActiverBcpFiche, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
+            get { return _ActiverBcpFicheSoi; }
+            set { AssignerChamp<bool>(ref _ActiverBcpFicheSoi, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
         }
         private C_t_soigner _SoignerSelectionne;
         public C_t_soigner SoignerSelectionne
@@ -51,12 +51,12 @@ namespace Gestion_Hopital.ViewModel
         }
         #endregion
         #region Commandes
-        public BaseCommande cConfirmer { get; set; }
-        public BaseCommande cAnnuler { get; set; }
-        public BaseCommande cAjouter { get; set; }
-        public BaseCommande cModifier { get; set; }
-        public BaseCommande cSupprimer { get; set; }
-        public BaseCommande cEssaiSelMult { get; set; }
+        public BaseCommande cConfirmerSoi { get; set; }
+        public BaseCommande cAnnulerSoi { get; set; }
+        public BaseCommande cAjouterSoi { get; set; }
+        public BaseCommande cModifierSoi { get; set; }
+        public BaseCommande cSupprimerSoi { get; set; }
+        public BaseCommande cEssaiSelMultSoi { get; set; }
         #endregion
         public VM_Soigner()
         {
@@ -68,13 +68,13 @@ namespace Gestion_Hopital.ViewModel
             UnSoigner.IDMedi= 1;
             UnSoigner.DateOperation = new DateTime(2020, 10, 22);
             ListSoigners = ChargerSoigner(chConnexion);
-            ActiverUneFiche = false;
-            cConfirmer = new BaseCommande(Confirmer);
-            cAnnuler = new BaseCommande(Annuler);
-            cAjouter = new BaseCommande(Ajouter);
-            cModifier = new BaseCommande(Modifier);
-            cSupprimer = new BaseCommande(Supprimer);
-            cEssaiSelMult = new BaseCommande(EssaiSelMult);
+            ActiverUneFicheSoi = false;
+            cConfirmerSoi = new BaseCommande(Confirmer);
+            cAnnulerSoi = new BaseCommande(Annuler);
+            cAjouterSoi = new BaseCommande(Ajouter);
+            cModifierSoi = new BaseCommande(Modifier);
+            cSupprimerSoi = new BaseCommande(Supprimer);
+            cEssaiSelMultSoi = new BaseCommande(EssaiSelMult);
         }
         private ObservableCollection<C_t_soigner> ChargerSoigner(string chConn)
         {
@@ -96,15 +96,15 @@ namespace Gestion_Hopital.ViewModel
                 new Model.G_t_soigner(chConnexion).Modifier(UnSoigner.ID, UnSoigner.IDMed, UnSoigner.IDPat, UnSoigner.IDType, UnSoigner.IDMedi, UnSoigner.DateOperation);
                 ListSoigners[nAjout] = new C_t_soigner(UnSoigner.ID, UnSoigner.IDMed, UnSoigner.IDPat, UnSoigner.IDType, UnSoigner.IDMedi, UnSoigner.DateOperation);
             }
-            ActiverUneFiche = false;
+            ActiverUneFicheSoi = false;
         }
         public void Annuler()
-        { ActiverUneFiche = false; }
+        { ActiverUneFicheSoi = false; }
         public void Ajouter()
         {
             UnSoigner = new VM_UnSoigner();
             nAjout = -1;
-            ActiverUneFiche = true;
+            ActiverUneFicheSoi = true;
         }
         public void Modifier()
         {
@@ -119,7 +119,7 @@ namespace Gestion_Hopital.ViewModel
                 UnSoigner.IDMedi = Tmp.IDMedi;
                 UnSoigner.DateOperation = Tmp.DateOperation;
                 nAjout = ListSoigners.IndexOf(SoignerSelectionne);
-                ActiverUneFiche = true;
+                ActiverUneFicheSoi = true;
             }
         }
         public void Supprimer()
