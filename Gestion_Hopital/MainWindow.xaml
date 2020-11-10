@@ -1,0 +1,248 @@
+﻿<Window x:Class="Gestion_Hopital.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestion_Hopital"
+        mc:Ignorable="d"
+        xmlns:viewModels="clr-namespace:Gestion_Hopital.ViewModel"
+        d:DataContext="{d:DesignInstance viewModels:VM_Occuper, IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterScreen"
+        Title="Tableau de bord" Height="1000" Width="1500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Top" Height="40" Margin="240,0">
+            <Button Name="btnMedecins" Content="Médecins" Width="100" Margin="5" Click="btnMedecins_Click"/>
+            <Button Name="btnSpecialites" Content="Spécialités" Width="100" Margin="5" Click="btnSpecialites_Click"/>
+            <Button Name="btnPatients" Content="Patients" Width="100" Margin="5" Click="btnPatients_Click"/>
+            <Button Name="btnChambres" Content="Chambres" Width="100" Margin="5" Click="btnChambres_Click"/>
+            <Button Name="btnMedicaments" Content="Médicaments" Width="100" Margin="5" Click="btnMedicaments_Click"/>
+            <Button Name="btnSoins" Content="Soins" Width="100" Margin="5" Click="btnSoins_Click"/>
+            <Button Name="btnOccupations" Content="Occupations" Width="100" Margin="5" Click="btnOccupations_Click"/>
+            <Button Name="btnSoigner" Content="Soigner" Width="100" Margin="5" Click="btnSoigner_Click"/>
+            <Button Name="btnQuitter" Content="Quitter" Width="100" Margin="5" Click="btnQuitter_Click"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Top" Height="40" Margin="410,41">
+            <Button Name="btn1" Content="Facturation" Width="100" Margin="5" Click="btnMedecins_Click"/>
+            <Button Name="btn2" Content="Hit-parade" Width="100" Margin="5" Click="btnSpecialites_Click"/>
+            <Button Name="btn3" Content="Occupations hebdomadaires" Width="160" Margin="5,5" Click="btnPatients_Click"/>
+            <Button Name="btn4" Content="Confirmation prestation" Width="150" Margin="5" Click="btnChambres_Click"/>
+            <Button Name="btn5" Content="Mail" Width="100" Margin="5" Click="btnMedicaments_Click"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Médecins :</Label>
+            <DataGrid Grid.Row="1" Name="dgMedecins" ItemsSource="{Binding Path=ListMedecins}" VerticalScrollBarVisibility="Visible"
+                      IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                      SelectedItem="{Binding MedecinSelectionne, Mode=TwoWay}" SelectionChanged="dgMedecins_SelectionChanged" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDMed}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Path=NomMed}" Width="Auto" />
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding Path=PrenomMed}" Width="Auto" />
+                    <DataGridTextColumn Header="Spécialité" Binding="{Binding Path=IDSpe}" Width="Auto" />
+                    <DataGridTextColumn Header="GSM" Binding="{Binding Path=GSMMed}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Disponibilités du médecin :</Label>
+            <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Name="CalendarMedecin" 
+                      IsEnabled="True" SelectionMode="SingleDate" DisplayMode="Month" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Liste des médicaments :</Label>
+            <DataGrid Grid.Row="1" Name="dgMedicaments" ItemsSource="{Binding Path=ListMedicaments}" VerticalScrollBarVisibility="Visible"
+                      IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                      SelectedItem="{Binding MedicamentSelectionne, Mode=TwoWay}" SelectionChanged="dgMedicaments_SelectionChanged" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDMedi}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Path=NomMedi}" Width="Auto" />
+                    <DataGridTextColumn Header="Quantité" Binding="{Binding Path=QuantiteMedi}" Width="Auto" />
+                    <DataGridTextColumn Header="Prix" Binding="{Binding Path=PrixMedi}" Width="Auto" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Patients :</Label>
+            <DataGrid Grid.Row="2" Grid.Column="0" Name="dgPatients" ItemsSource="{Binding Path=ListClients}" VerticalScrollBarVisibility="Visible"
+                      IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                      SelectedItem="{Binding PersonneSelectionnee, Mode=TwoWay}" SelectionChanged="dgPatients_SelectionChanged" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding Path=IDPat}" />
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Path=NomPat}" Width="Auto" />
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding Path=PrenomPat}" Width="Auto" />
+                    <DataGridTextColumn Header="Mail" Binding="{Binding Path=MailPat}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Margin="3,0,3,0" Name="FicheOccuper" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Name="UneFicheOccuper" IsEnabled="{Binding  Path= ActiverUneFiche, Mode=TwoWay}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Ajout d'un patient dans une chambre :</Label>
+                <TextBlock Grid.Row="1" Name="tIDOcc" Text="Identifiant" VerticalAlignment="Center" />
+                <TextBox Name="tbIDOcc" Grid.Row="1" Grid.Column="1" Margin="8" IsReadOnly="True"
+                    Text="{Binding Path=UneOccupation.ID, Mode=TwoWay}" />
+                <TextBlock Name="tIDPatOcc" Text="ID du patient" Grid.Row="2" VerticalAlignment="Center" />
+                <TextBox Name="tbIDPatOcc" Grid.Row="2" Grid.Column="1" Margin="8"
+                    Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
+                <TextBlock Name="tIDCha" Text="ID de la chambre" Grid.Row="3" VerticalAlignment="Center" />
+                <TextBox Name="tbIDCha" Grid.Row="3" Grid.Column="1" Margin="8"
+                    Text="{Binding SelectedItem.IDCha, ElementName=dgChambres, Mode=TwoWay}" />
+                <TextBlock Name="tDateEntree" Text="Date d'entrée" Grid.Row="4" VerticalAlignment="Center" />
+                <DatePicker Grid.Row="4" Grid.Column="1" Name="DateEntreePicker" Margin="8"></DatePicker>
+                <!--<TextBox Name="tbDateEntree" Grid.Row="4" Grid.Column="1" Margin="3"
+                     Text="{Binding Path=UneOccupation.DateEntree, Mode=TwoWay}" />-->
+                <TextBlock Name="tDateSortie" Text="Date de sortie" Grid.Row="5" VerticalAlignment="Center" />
+                <DatePicker Grid.Row="5" Grid.Column="1" Name="DateSortiePicker" Margin="8"></DatePicker>
+                <!--<TextBox Name="tbDateSortie" Grid.Row="5" Grid.Column="1" Margin="3"
+                     Text="{Binding Path=UneOccupation.DateSortie, Mode=TwoWay}" />-->
+                <TextBlock Name="tPrixJour" Text="Prix journalier" Grid.Row="6" VerticalAlignment="Center" />
+                <TextBox Name="tbPrixJour" Grid.Row="6" Grid.Column="1" Margin="8"
+                     Text="{Binding Path=UneOccupation.PrixJournalier, Mode=TwoWay}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,3" Width="Auto" >
+                    <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=TwoWay}"
+                            Command="{Binding cAjouter}" CommandParameter="{Binding ActiverUneFiche}" />
+                    <Button Name="bConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
+                            Command="{Binding cConfirmer}" />
+                    <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
+                            Command="{Binding cAnnuler}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2" Margin="3,0,3,0" Name="UneFicheSoigner" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" Grid.RowSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Ajout d'un soin effectué :</Label>
+            <TextBlock Grid.Row="1" Name="tID" Text="Identifiant" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Name="tbID" Grid.Column="1" Margin="3" IsReadOnly="True"
+                     Text="{Binding Path=UnSoigner.ID, Mode=TwoWay}" />
+            <TextBlock Grid.Row="2" Name="tIDMed" Text="ID du médecin" VerticalAlignment="Center" />
+            <TextBox Name="tbIDMed" Grid.Row="2" Grid.Column="1" Margin="3"
+                    Text="{Binding SelectedItem.IDMed, ElementName=dgMedecins, Mode=TwoWay}" />
+            <TextBlock Grid.Row="3" Name="tIDPat" Text="ID du patient" VerticalAlignment="Center" />
+            <TextBox Name="tbIDPat" Grid.Row="3" Grid.Column="1" Margin="3"
+                    Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
+            <TextBlock Grid.Row="4" Name="tIDType" Text="ID du type de soin" VerticalAlignment="Center" />
+            <TextBox Name="tbIDType" Grid.Row="4" Grid.Column="1" Margin="3"
+                     Text="{Binding SelectedItem.IDSoin, ElementName=dgSoins, Mode=TwoWay}" />
+            <TextBlock Grid.Row="5" Name="tIDMedi" Text="ID du médicament" VerticalAlignment="Center" />
+            <TextBox Name="tbIDMedi" Grid.Row="5" Grid.Column="1" Margin="3"
+                     Text="{Binding SelectedItem.IDMedi, ElementName=dgMedicaments, Mode=TwoWay}" />
+            <TextBlock Grid.Row="6" Name="tDateOpe" Text="Date du soin" VerticalAlignment="Center" />
+            <TextBox Name="tbDateOpe" Grid.Row="6" Grid.Column="1" Margin="3"
+                     Text="{Binding Path=UnSoigner.DateOperation, Mode=TwoWay}" />
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Chambres :</Label>
+            <DataGrid Grid.Row="2" Grid.Column="0" Name="dgChambres" ItemsSource="{Binding Path=ListChambres}" VerticalScrollBarVisibility="Visible"
+                      IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                      SelectedItem="{Binding ChambreSelectionnee, Mode=TwoWay}" SelectionChanged="dgChambres_SelectionChanged" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding Path=IDCha}" />
+                    <DataGridTextColumn Header="Numéro" Binding="{Binding Path=NomCha}" Width="Auto" />
+                    <DataGridTextColumn Header="Nombre de lits" Binding="{Binding Path=QuantiteLits}" Width="Auto" />
+                    <DataGridTextColumn Header="Type de chambre" Binding="{Binding Path=TypeCha}" Width="Auto" />
+                    <DataGridTextColumn Header="Etage" Binding="{Binding Path=EtageCha}" Width="Auto" />
+                    <DataGridTextColumn Header="Service" Binding="{Binding Path=ServiceCha}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Disponibilté de la chambre :</Label>
+            <DataGrid Grid.Row="1" Name="dgDispoChambres" ItemsSource="{Binding Path=ListDispo}" VerticalScrollBarVisibility="Visible"
+                      IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                      SelectedItem="{Binding ChambreSelectionnee, Mode=TwoWay}" SelectionChanged="dgChambres_SelectionChanged" Margin="5,0,-5,0" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Lundi" Binding="{Binding Lundi}" Width="Auto" />
+                    <DataGridTextColumn Header="Mardi" Binding="{Binding Mardi}" Width="Auto" />
+                    <DataGridTextColumn Header="Mercredi" Binding="{Binding Mercredi}" Width="Auto" />
+                    <DataGridTextColumn Header="Jeudi" Binding="{Binding Jeudi}" Width="Auto" />
+                    <DataGridTextColumn Header="Vendredi" Binding="{Binding Vendredi}" Width="Auto" />
+                    <DataGridTextColumn Header="Samedi" Binding="{Binding Samedi}" Width="Auto" />
+                    <DataGridTextColumn Header="Dimanche" Binding="{Binding Dimanche}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center">Type de soin prodigué :</Label>
+            <Grid Grid.Row="1" >
+                <DataGrid Name="dgSoins" ItemsSource="{Binding Path=ListSoins}" Grid.Row="3" VerticalScrollBarVisibility="Visible"
+                          IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                          SelectedItem="{Binding SoinSelectionne, Mode=TwoWay}" SelectionChanged="dgSoins_SelectionChanged" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDsoin}" />
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Path=NomSoin}" Width="Auto" />
+                        <DataGridTextColumn Header="Prix" Binding="{Binding Path=PrixSoin}" Width="Auto" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
