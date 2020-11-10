@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Gestion_Hopital"
         mc:Ignorable="d"
         xmlns:viewModels="clr-namespace:Gestion_Hopital.ViewModel"
-        d:DataContext="{d:DesignInstance viewModels:VM_Occuper, IsDesignTimeCreatable=True}"
         WindowStartupLocation="CenterScreen"
         Title="Tableau de bord" Height="1000" Width="1500">
     <Grid>
@@ -143,7 +142,7 @@
                      Text="{Binding Path=UneOccupation.PrixJournalier, Mode=TwoWay}" />
             </Grid>
             <Grid Grid.Row="1">
-                <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,3" Width="Auto" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,3" Width="Auto" >
                     <Button Name="bAjouter" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=TwoWay}"
                             Command="{Binding cAjouter}" CommandParameter="{Binding ActiverUneFiche}" />
                     <Button Name="bConfirmer" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
@@ -153,39 +152,56 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="2" Margin="3,0,3,0" Name="UneFicheSoigner" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}" Grid.RowSpan="2" >
+        <Grid Grid.Row="2" Grid.Column="2" Margin="3,0,3,0" Name="FicheSoigner">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Ajout d'un soin effectué :</Label>
-            <TextBlock Grid.Row="1" Name="tID" Text="Identifiant" VerticalAlignment="Center" />
-            <TextBox Grid.Row="1" Name="tbID" Grid.Column="1" Margin="3" IsReadOnly="True"
-                     Text="{Binding Path=UnSoigner.ID, Mode=TwoWay}" />
-            <TextBlock Grid.Row="2" Name="tIDMed" Text="ID du médecin" VerticalAlignment="Center" />
-            <TextBox Name="tbIDMed" Grid.Row="2" Grid.Column="1" Margin="3"
-                    Text="{Binding SelectedItem.IDMed, ElementName=dgMedecins, Mode=TwoWay}" />
-            <TextBlock Grid.Row="3" Name="tIDPat" Text="ID du patient" VerticalAlignment="Center" />
-            <TextBox Name="tbIDPat" Grid.Row="3" Grid.Column="1" Margin="3"
-                    Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
-            <TextBlock Grid.Row="4" Name="tIDType" Text="ID du type de soin" VerticalAlignment="Center" />
-            <TextBox Name="tbIDType" Grid.Row="4" Grid.Column="1" Margin="3"
-                     Text="{Binding SelectedItem.IDSoin, ElementName=dgSoins, Mode=TwoWay}" />
-            <TextBlock Grid.Row="5" Name="tIDMedi" Text="ID du médicament" VerticalAlignment="Center" />
-            <TextBox Name="tbIDMedi" Grid.Row="5" Grid.Column="1" Margin="3"
-                     Text="{Binding SelectedItem.IDMedi, ElementName=dgMedicaments, Mode=TwoWay}" />
-            <TextBlock Grid.Row="6" Name="tDateOpe" Text="Date du soin" VerticalAlignment="Center" />
-            <TextBox Name="tbDateOpe" Grid.Row="6" Grid.Column="1" Margin="3"
-                     Text="{Binding Path=UnSoigner.DateOperation, Mode=TwoWay}" />
+            <Grid Grid.Row="0" Name="UneFicheSoigner" IsEnabled="{Binding Path=ActiverUneFiche, Mode=OneWay}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center">Ajout d'un soin effectué :</Label>
+                <TextBlock Grid.Row="1" Name="tID" Text="Identifiant" VerticalAlignment="Center" />
+                <TextBox Grid.Row="1" Name="tbID" Grid.Column="1" Margin="8" IsReadOnly="True"
+                         Text="{Binding Path=UnSoigner.ID, Mode=TwoWay}" />
+                <TextBlock Grid.Row="2" Name="tIDMed" Text="ID du médecin" VerticalAlignment="Center" />
+                <TextBox Name="tbIDMed" Grid.Row="2" Grid.Column="1" Margin="8"
+                        Text="{Binding SelectedItem.IDMed, ElementName=dgMedecins, Mode=TwoWay}" />
+                <TextBlock Grid.Row="3" Name="tIDPat" Text="ID du patient" VerticalAlignment="Center" />
+                <TextBox Name="tbIDPat" Grid.Row="3" Grid.Column="1" Margin="8"
+                        Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
+                <TextBlock Grid.Row="4" Name="tIDType" Text="ID du type de soin" VerticalAlignment="Center" />
+                <TextBox Name="tbIDType" Grid.Row="4" Grid.Column="1" Margin="8"
+                         Text="{Binding SelectedItem.IDSoin, ElementName=dgSoins, Mode=TwoWay}" />
+                <TextBlock Grid.Row="5" Name="tIDMedi" Text="ID du médicament" VerticalAlignment="Center" />
+                <TextBox Name="tbIDMedi" Grid.Row="5" Grid.Column="1" Margin="8"
+                         Text="{Binding SelectedItem.IDMedi, ElementName=dgMedicaments, Mode=TwoWay}" />
+                <TextBlock Grid.Row="6" Name="tDateOpe" Text="Date du soin" VerticalAlignment="Center" />
+                <DatePicker Grid.Row="6" Grid.Column="1" Name="DateOperationPicker" Margin="8"></DatePicker>
+                <!--<TextBox Name="tbDateOpe" Grid.Row="6" Grid.Column="1" Margin="8"
+                         Text="{Binding Path=UnSoigner.DateOperation, Mode=TwoWay}" />-->
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,3" Width="Auto" >
+                    <Button Name="bAjouterS" Content="Ajouter" Margin="3" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=TwoWay}"
+                            Command="{Binding cAjouter}" CommandParameter="{Binding ActiverUneFiche}" />
+                    <Button Name="bConfirmerS" Content="Confirmer" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
+                            Command="{Binding cConfirmer}" />
+                    <Button Name="bAnnulerS" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFiche, Mode=TwoWay}"
+                            Command="{Binding cAnnuler}" />
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="0">
             <Grid.RowDefinitions>
