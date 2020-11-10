@@ -101,9 +101,9 @@ namespace Gestion_Hopital
             dgMedicaments.DataContext = MwMedicaments;
             dgSoins.DataContext = MwSoins;
             //UneFicheOccuper.DataContext = MwSoins;
-            FicheOccuper.DataContext = MwSoins;
+            FicheOccuper.DataContext = MwOccuper;
             //CAjouterOccuper = MwOccuper.cAjouter;
-            FicheSoigner.DataContext = MwSoins;
+            FicheSoigner.DataContext = MwSoigner;
         }
         private void dgMedecins_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
