@@ -61,7 +61,7 @@ namespace Gestion_Hopital.ViewModel
         public VM_Soins()
         {
             UnSoin = new VM_UnSoin();
-            UnSoin.ID = 24;
+            UnSoin.ID = 38;
             UnSoin.Nom = "Donner une piqure";
             UnSoin.Prix = 25;
             ListSoins = ChargerSoins(chConnexion);
@@ -99,7 +99,7 @@ namespace Gestion_Hopital.ViewModel
         { ActiverUneFiche = false; }
         public void Ajouter()
         {
-            UnSoin = new VM_UnSoin();
+            //UnSoin = new VM_UnSoin();
             nAjout = -1;
             ActiverUneFiche = true;
         }
@@ -108,7 +108,7 @@ namespace Gestion_Hopital.ViewModel
             if (SoinSelectionne != null)
             {
                 C_t_soins Tmp = new G_t_soins(chConnexion).Lire_ID(SoinSelectionne.IDSoin);
-                UnSoin = new VM_UnSoin();
+                //UnSoin = new VM_UnSoin();
                 UnSoin.ID = Tmp.IDSoin;
                 UnSoin.Nom = Tmp.NomSoin;
                 UnSoin.Prix = Tmp.PrixSoin;
@@ -161,6 +161,11 @@ namespace Gestion_Hopital.ViewModel
                 set { AssignerChamp<int>(ref _prix, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
             #endregion
+
+            public VM_UnSoin()
+            {
+                
+            }
         }
 
     }

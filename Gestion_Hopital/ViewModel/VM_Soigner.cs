@@ -61,7 +61,7 @@ namespace Gestion_Hopital.ViewModel
         public VM_Soigner()
         {
             UnSoigner = new VM_UnSoigner();
-            UnSoigner.ID = 24;
+            UnSoigner.ID = 38;
             UnSoigner.IDMed = 3;
             UnSoigner.IDPat = 3;
             UnSoigner.IDType = 1;
@@ -102,7 +102,7 @@ namespace Gestion_Hopital.ViewModel
         { ActiverUneFicheSoi = false; }
         public void Ajouter()
         {
-            UnSoigner = new VM_UnSoigner();
+            //UnSoigner = new VM_UnSoigner();
             nAjout = -1;
             ActiverUneFicheSoi = true;
         }
@@ -111,7 +111,7 @@ namespace Gestion_Hopital.ViewModel
             if (SoignerSelectionne != null)
             {
                 C_t_soigner Tmp = new Model.G_t_soigner(chConnexion).Lire_ID(SoignerSelectionne.IDSoi);
-                UnSoigner = new VM_UnSoigner();
+                //UnSoigner = new VM_UnSoigner();
                 UnSoigner.ID = Tmp.IDSoi;
                 UnSoigner.IDMed = Tmp.IDMed;
                 UnSoigner.IDPat = Tmp.IDPat;
@@ -188,6 +188,11 @@ namespace Gestion_Hopital.ViewModel
             }
 
             #endregion
+
+            public VM_UnSoigner()
+            {
+                
+            }
         }
 
     }

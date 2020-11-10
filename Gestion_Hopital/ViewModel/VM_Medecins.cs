@@ -102,7 +102,7 @@ namespace Gestion_Hopital.ViewModel
         { ActiverUneFiche = false; }
         public void Ajouter()
         {
-            UnMedecin = new VM_UnMedecin();
+            //UnMedecin = new VM_UnMedecin();
             nAjout = -1;
             ActiverUneFiche = true;
         }
@@ -111,7 +111,7 @@ namespace Gestion_Hopital.ViewModel
             if (MedecinSelectionne != null)
             {
                 C_t_medecins Tmp = new Model.G_t_medecins(chConnexion).Lire_ID(MedecinSelectionne.IDMed);
-                UnMedecin = new VM_UnMedecin();
+                //UnMedecin = new VM_UnMedecin();
                 UnMedecin.ID = Tmp.IDMed;
                 UnMedecin.Nom = Tmp.NomMed;
                 UnMedecin.Pre = Tmp.PrenomMed;

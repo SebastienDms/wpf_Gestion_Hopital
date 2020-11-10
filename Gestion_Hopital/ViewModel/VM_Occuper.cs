@@ -102,7 +102,14 @@ namespace Gestion_Hopital.ViewModel
         { ActiverUneFiche = false; }
         public void Ajouter()
         {
-            UneOccupation = new VM_UneOccupation();
+            UneOccupation.ID = new int();
+            //UneOccupation.IDPat = 2;
+            //UneOccupation.IDCha = 2;
+            UneOccupation.DateEntree = new DateTime();
+            UneOccupation.DateSortie = new DateTime();
+            UneOccupation.PrixJournalier = new int();
+
+            //UneOccupation = new VM_UneOccupation();
             nAjout = -1;
             ActiverUneFiche = true;
         }
@@ -111,7 +118,7 @@ namespace Gestion_Hopital.ViewModel
             if (OccupationSelectionnee != null)
             {
                 C_t_occuper Tmp = new Model.G_t_occuper(chConnexion).Lire_ID(OccupationSelectionnee.IDOcc);
-                UneOccupation = new VM_UneOccupation();
+                //UneOccupation = new VM_UneOccupation();
                 UneOccupation.ID = Tmp.IDOcc;
                 UneOccupation.IDPat = Tmp.IDPat;
                 UneOccupation.IDCha = Tmp.IDCha;
@@ -186,6 +193,11 @@ namespace Gestion_Hopital.ViewModel
                 set { AssignerChamp<DateTime>(ref _dateSortie, value, System.Reflection.MethodBase.GetCurrentMethod().Name); }
             }
             #endregion
+
+            public VM_UneOccupation()
+            {
+
+            }
         }
 
     }

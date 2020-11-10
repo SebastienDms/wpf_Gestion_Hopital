@@ -102,6 +102,7 @@ namespace Gestion_Hopital
             dgSoins.DataContext = MwSoins;
             //UneFicheOccuper.DataContext = MwSoins;
             FicheOccuper.DataContext = MwOccuper;
+            //MwOccuper.UneOccupation.IDPat = ((VM_Patients) dgPatients.SelectedItem).UnClient.ID;
             //CAjouterOccuper = MwOccuper.cAjouter;
             FicheSoigner.DataContext = MwSoigner;
         }
@@ -120,8 +121,19 @@ namespace Gestion_Hopital
                 }
             }
         }
+
         private void dgPatients_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { if (dgPatients.SelectedIndex >= 0) MwPatients.ClientsSelectionnee2UnClient(); }
+        {
+            bool ok;
+            int res;
+            ok = int.TryParse(tbIDPatOcc.Text, out res);
+            //var text = tb
+            if (dgPatients.SelectedIndex >= 0 && ok)
+            {
+                MwPatients.ClientsSelectionnee2UnClient();
+                MwOccuper.UneOccupation.IDPat = res;
+            }
+        }
         private void dgChambres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgChambres.SelectedIndex >= 0)
