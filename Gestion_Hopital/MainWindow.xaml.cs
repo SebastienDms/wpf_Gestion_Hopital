@@ -100,10 +100,7 @@ namespace Gestion_Hopital
             dgDispoChambres.DataContext = MmDispoChambre;
             dgMedicaments.DataContext = MwMedicaments;
             dgSoins.DataContext = MwSoins;
-            //UneFicheOccuper.DataContext = MwSoins;
             FicheOccuper.DataContext = MwOccuper;
-            //MwOccuper.UneOccupation.IDPat = ((VM_Patients) dgPatients.SelectedItem).UnClient.ID;
-            //CAjouterOccuper = MwOccuper.cAjouter;
             FicheSoigner.DataContext = MwSoigner;
         }
         private void dgMedecins_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -121,23 +118,8 @@ namespace Gestion_Hopital
                 }
             }
         }
-
         private void dgPatients_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            bool okIDPat, okIDCha;
-            int resIDPat, resIDCha;
-            okIDPat = int.TryParse(tbIDPatOcc.Text, out resIDPat);
-            okIDCha = int.TryParse(tbIDPatOcc.Text, out resIDCha);
-            if (dgPatients.SelectedIndex >= 0 && okIDPat && okIDCha)
-            {
-                MwPatients.ClientsSelectionnee2UnClient();
-                /* Binding maison pour la création d'une occupation */
-                MwOccuper.UneOccupation.IDPat = resIDPat;
-                MwOccuper.UneOccupation.IDCha = resIDCha;
-                MwOccuper.UneOccupation.DateEntree = DateTime.Parse(DateEntreePicker.Text);
-                MwOccuper.UneOccupation.DateSortie = DateTime.Parse(DateSortiePicker.Text);
-            }
-        }
+        { if (dgPatients.SelectedIndex >= 0) MwPatients.ClientsSelectionnee2UnClient(); }
         private void dgChambres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgChambres.SelectedIndex >= 0)
@@ -199,5 +181,20 @@ namespace Gestion_Hopital
         }
         #endregion
 
+        private void BConfirmer_OnClick(object sender, RoutedEventArgs e)
+        {
+            bool okIDPat, okIDCha;
+            int resIDPat, resIDCha;
+            okIDPat = int.TryParse(tbIDPatOcc.Text, out resIDPat);
+            okIDCha = int.TryParse(tbIDPatOcc.Text, out resIDCha);
+            if (okIDPat && okIDCha)
+            {
+                /* Binding maison pour la création d'une occupation */
+                MwOccuper.UneOccupation.IDPat = resIDPat;
+                MwOccuper.UneOccupation.IDCha = resIDCha;
+                MwOccuper.UneOccupation.DateEntree = DateTime.Parse(DateEntreePicker.Text);
+                MwOccuper.UneOccupation.DateSortie = DateTime.Parse(DateSortiePicker.Text);
+            }
+        }
     }
 }
