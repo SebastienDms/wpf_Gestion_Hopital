@@ -58,6 +58,8 @@ namespace Gestion_Hopital.ViewModel
         public BaseCommande cSupprimer { get; set; }
         public BaseCommande cEssaiSelMult { get; set; }
         #endregion
+        #region Constructeur VM_Occuper
+
         public VM_Occuper()
         {
             UneOccupation = new VM_UneOccupation();
@@ -76,6 +78,9 @@ namespace Gestion_Hopital.ViewModel
             cSupprimer = new BaseCommande(Supprimer);
             cEssaiSelMult = new BaseCommande(EssaiSelMult);
         }
+
+
+        #endregion
         private ObservableCollection<C_t_occuper> ChargerOccupation(string chConn)
         {
             ObservableCollection<C_t_occuper> rep = new ObservableCollection<C_t_occuper>();
@@ -84,6 +89,7 @@ namespace Gestion_Hopital.ViewModel
                 rep.Add(Tmp);
             return rep;
         }
+        #region Fonctions boutons
         public void Confirmer()
         {
             if (nAjout == -1)
@@ -144,6 +150,9 @@ namespace Gestion_Hopital.ViewModel
             { string s = p.NomPat; }
             int nTmp = lTmp.Count;
         }
+
+
+        #endregion
         public void OccupationsSelectionnee2UneOccupation()
         {
             UneOccupation.ID = OccupationSelectionnee.IDOcc;

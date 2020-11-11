@@ -187,6 +187,5 @@ namespace Gestion_Hopital.ViewModel
             }
             #endregion
         }
-
     }
 }
