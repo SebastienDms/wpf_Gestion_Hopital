@@ -124,14 +124,18 @@ namespace Gestion_Hopital
 
         private void dgPatients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            bool ok;
-            int res;
-            ok = int.TryParse(tbIDPatOcc.Text, out res);
-            //var text = tb
-            if (dgPatients.SelectedIndex >= 0 && ok)
+            bool okIDPat, okIDCha;
+            int resIDPat, resIDCha;
+            okIDPat = int.TryParse(tbIDPatOcc.Text, out resIDPat);
+            okIDCha = int.TryParse(tbIDPatOcc.Text, out resIDCha);
+            if (dgPatients.SelectedIndex >= 0 && okIDPat && okIDCha)
             {
                 MwPatients.ClientsSelectionnee2UnClient();
-                MwOccuper.UneOccupation.IDPat = res;
+                /* Binding maison pour la création d'une occupation */
+                MwOccuper.UneOccupation.IDPat = resIDPat;
+                MwOccuper.UneOccupation.IDCha = resIDCha;
+                MwOccuper.UneOccupation.DateEntree = DateTime.Parse(DateEntreePicker.Text);
+                MwOccuper.UneOccupation.DateSortie = DateTime.Parse(DateSortiePicker.Text);
             }
         }
         private void dgChambres_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -147,10 +151,6 @@ namespace Gestion_Hopital
         { if (dgMedicaments.SelectedIndex >= 0) MwMedicaments.MedicamentsSelectionnee2UnMedicament(); }
         private void dgSoins_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { if (dgMedicaments.SelectedIndex >= 0) MwSoins.SoinsSelectionnes2UnClient(); }
-        private void dgDispoChambres_SelectionChanged()
-        {
-
-        }
         #region Fenetres Boutons
         public void btnMedecins_Click(object sender, RoutedEventArgs e)
         {
