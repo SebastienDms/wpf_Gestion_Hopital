@@ -133,7 +133,7 @@ namespace Gestion_Hopital
         { if (dgMedicaments.SelectedIndex >= 0) MwMedicaments.MedicamentsSelectionnee2UnMedicament(); }
         private void dgSoins_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { if (dgMedicaments.SelectedIndex >= 0) MwSoins.SoinsSelectionnes2UnClient(); }
-        #region Fenetres Boutons
+        #region Fenetres Boutons Menu
         public void btnMedecins_Click(object sender, RoutedEventArgs e)
         {
             Medecins fenMed = new Medecins();
@@ -181,20 +181,67 @@ namespace Gestion_Hopital
         }
         #endregion
 
+        #region Bouton OnClicks
+        #region FicheOccuper
         private void BConfirmer_OnClick(object sender, RoutedEventArgs e)
         {
+            /* Permet d'envoyer les valeurs encodées dans la fiche Occuper */
+            /* Car les éléments sont déjà bindé avec les différents DG */
             bool okIDPat, okIDCha;
             int resIDPat, resIDCha;
             okIDPat = int.TryParse(tbIDPatOcc.Text, out resIDPat);
-            okIDCha = int.TryParse(tbIDPatOcc.Text, out resIDCha);
+            okIDCha = int.TryParse(tbIDCha.Text, out resIDCha);
             if (okIDPat && okIDCha)
             {
-                /* Binding maison pour la création d'une occupation */
                 MwOccuper.UneOccupation.IDPat = resIDPat;
                 MwOccuper.UneOccupation.IDCha = resIDCha;
                 MwOccuper.UneOccupation.DateEntree = DateTime.Parse(DateEntreePicker.Text);
                 MwOccuper.UneOccupation.DateSortie = DateTime.Parse(DateSortiePicker.Text);
             }
+            ViderFicheOccuper();
         }
+        private void BAnnuler_OnClick(object sender, RoutedEventArgs e)
+        { ViderFicheOccuper(); }
+        #endregion
+
+        #region FicheSoigner
+        private void BConfirmerS_OnClick(object sender, RoutedEventArgs e)
+        {
+            /* Permet d'envoyer les valeurs encodées dans la fiche Soigner */
+            /* Car les éléments sont déjà bindé avec les différents DG */
+            bool okIDSoig, okIDPat, okIDMed, okIDTyp, okIDMedi;
+            int resIdSoing, resIdPat, okIdMed, okIdTyp, okIdMedi;
+            okIDSoig = int.TryParse(tbIDSoig.Text, out resIdSoing);
+            okIDPat = int.TryParse(tbIDSoig.Text, out resIdPat);
+            okIDMed = int.TryParse(tbIDSoig.Text, out okIdMed);
+            okIDTyp = int.TryParse(tbIDSoig.Text, out okIdTyp);
+            okIDMedi = int.TryParse(tbIDSoig.Text, out okIdMedi);
+            if (okIDSoig && okIDPat && okIDMed && okIDTyp && okIDMedi)
+            {
+                MwSoigner.UnSoigner.ID = resIdSoing;
+                MwSoigner.UnSoigner.IDPat = resIdPat;
+                MwSoigner.UnSoigner.IDMed = okIdMed;
+                MwSoigner.UnSoigner.IDType = okIdTyp;
+                MwSoigner.UnSoigner.IDMedi = okIdMedi;
+                MwSoigner.UnSoigner.DateOperation = DateTime.Parse(DateOperationPicker.Text);
+            }
+            ViderFicheSoigner();
+        }
+
+        private void BAnnulerS_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViderFicheSoigner();
+        }
+        #endregion
+        #endregion
+
+        #region Vider TextBox
+        private void ViderFicheOccuper()
+        { DateEntreePicker.Text = DateSortiePicker.Text =tbIDOcc.Text = tbIDPatOcc.Text = tbIDCha.Text = tbPrixJour.Text = string.Empty; }
+
+        private void ViderFicheSoigner()
+        { DateOperationPicker.Text = tbIDSoig.Text = tbIDPat.Text = tbIDMed.Text = tbIDType.Text = tbIDMedi.Text = string.Empty; }
+        #endregion
+
     }
 }
