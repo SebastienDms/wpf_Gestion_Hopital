@@ -212,10 +212,10 @@ namespace Gestion_Hopital
             bool okIDSoig, okIDPat, okIDMed, okIDTyp, okIDMedi;
             int resIdSoing, resIdPat, okIdMed, okIdTyp, okIdMedi;
             okIDSoig = int.TryParse(tbIDSoig.Text, out resIdSoing);
-            okIDPat = int.TryParse(tbIDSoig.Text, out resIdPat);
-            okIDMed = int.TryParse(tbIDSoig.Text, out okIdMed);
-            okIDTyp = int.TryParse(tbIDSoig.Text, out okIdTyp);
-            okIDMedi = int.TryParse(tbIDSoig.Text, out okIdMedi);
+            okIDPat = int.TryParse(tbIDPat.Text, out resIdPat);
+            okIDMed = int.TryParse(tbIDMed.Text, out okIdMed);
+            okIDTyp = int.TryParse(tbIDType.Text, out okIdTyp);
+            okIDMedi = int.TryParse(tbIDMedi.Text, out okIdMedi);
             if (okIDSoig && okIDPat && okIDMed && okIDTyp && okIDMedi)
             {
                 MwSoigner.UnSoigner.ID = resIdSoing;

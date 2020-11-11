@@ -108,13 +108,6 @@ namespace Gestion_Hopital.ViewModel
         { ActiverUneFiche = false; }
         public void Ajouter()
         {
-            UneOccupation.ID = new int();
-            //UneOccupation.IDPat = 2;
-            //UneOccupation.IDCha = 2;
-            UneOccupation.DateEntree = new DateTime();
-            UneOccupation.DateSortie = new DateTime();
-            UneOccupation.PrixJournalier = new int();
-
             //UneOccupation = new VM_UneOccupation();
             nAjout = -1;
             ActiverUneFiche = true;

@@ -15,8 +15,8 @@ namespace Gestion_Hopital.Model
             int res = 0;
             Commande.Parameters.Add("IdSoin", SqlDbType.Int);
             Direction("IdSoin", ParameterDirection.Output);
-            Commande.Parameters.AddWithValue("@NomMedi", NomSoin);
-            Commande.Parameters.AddWithValue("@QuantiteMedi", PrixSoin);
+            Commande.Parameters.AddWithValue("@NomSoin", NomSoin);
+            Commande.Parameters.AddWithValue("@PrixSoin", PrixSoin);
             Commande.Connection.Open();
             Commande.ExecuteNonQuery();
             res = int.Parse(LireParametre("IdSoin"));
