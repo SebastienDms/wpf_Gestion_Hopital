@@ -54,7 +54,6 @@ namespace Gestion_Hopital.ViewModel
 
             return nbrOperation;
         }
-
         private ObservableCollection<HitParade> OrderByDescending(ObservableCollection<HitParade> lHitParades)
         {
             var lTmp = lHitParades.OrderByDescending(El => El.NombreOperationMed).ToList();

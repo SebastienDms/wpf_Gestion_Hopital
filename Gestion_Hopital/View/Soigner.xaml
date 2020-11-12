@@ -58,7 +58,7 @@
             <Button Name="bAnnuler" Content="Annuler" Margin="3" IsEnabled="{Binding Path=ActiverUneFicheSoi, Mode=OneWay}"
            Command="{Binding cAnnulerSoi}" />
         </StackPanel>
-        <DataGrid Name="dgSoigners" ItemsSource="{Binding Path=ListOccupations}" Grid.Row="3" VerticalScrollBarVisibility="Visible"
+        <DataGrid Name="dgSoigners" ItemsSource="{Binding Path= ListSoigners}" Grid.Row="3" VerticalScrollBarVisibility="Visible"
             IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFicheSoi, Mode=OneWay}"
             SelectedItem="{Binding SoignerSelectionne, Mode=TwoWay}" SelectionChanged="dgSoigners_SelectionChanged" >
             <DataGrid.Columns>
