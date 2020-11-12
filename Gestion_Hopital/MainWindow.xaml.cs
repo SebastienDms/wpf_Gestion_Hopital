@@ -133,6 +133,7 @@ namespace Gestion_Hopital
         { if (dgMedicaments.SelectedIndex >= 0) MwMedicaments.MedicamentsSelectionnee2UnMedicament(); }
         private void dgSoins_SelectionChanged(object sender, SelectionChangedEventArgs e)
         { if (dgMedicaments.SelectedIndex >= 0) MwSoins.SoinsSelectionnes2UnClient(); }
+
         #region Fenetres Boutons Menu
         public void btnMedecins_Click(object sender, RoutedEventArgs e)
         {
@@ -174,7 +175,11 @@ namespace Gestion_Hopital
             Soigner fenSoi = new Soigner();
             fenSoi.ShowDialog();
         }
-
+        private void btnHitParade_Click(object sender, RoutedEventArgs e)
+        {
+            HitParade fenHitParade = new HitParade();
+            fenHitParade.ShowDialog();
+        }
         public void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
             Close();
