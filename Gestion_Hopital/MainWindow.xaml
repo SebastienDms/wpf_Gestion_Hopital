@@ -124,10 +124,10 @@
                 <TextBox Name="tbIDOcc" Grid.Row="1" Grid.Column="1" Margin="8" IsReadOnly="True"
                     Text="{Binding Path=UneOccupation.ID, Mode=TwoWay}" />
                 <TextBlock Name="tIDPatOcc" Text="ID du patient" Grid.Row="2" VerticalAlignment="Center" />
-                <TextBox Name="tbIDPatOcc" Grid.Row="2" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDPatOcc" Grid.Row="2" Grid.Column="1" Margin="8" IsReadOnly="True"
                     Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
                 <TextBlock Name="tIDCha" Text="ID de la chambre" Grid.Row="3" VerticalAlignment="Center" />
-                <TextBox Name="tbIDCha" Grid.Row="3" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDCha" Grid.Row="3" Grid.Column="1" Margin="8" IsReadOnly="True"
                     Text="{Binding SelectedItem.IDCha, ElementName=dgChambres, Mode=TwoWay}" />
                 <TextBlock Name="tDateEntree" Text="Date d'entrée" Grid.Row="4" VerticalAlignment="Center" />
                 <DatePicker Grid.Row="4" Grid.Column="1" Name="DateEntreePicker" Margin="8"></DatePicker>
@@ -176,16 +176,16 @@
                 <TextBox Grid.Row="1" Name="tbIDSoig" Grid.Column="1" Margin="8" IsReadOnly="True"
                          Text="{Binding Path=UnSoigner.ID, Mode=TwoWay}" />
                 <TextBlock Grid.Row="2" Name="tIDMed" Text="ID du médecin" VerticalAlignment="Center" />
-                <TextBox Name="tbIDMed" Grid.Row="2" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDMed" Grid.Row="2" Grid.Column="1" Margin="8" IsReadOnly="True"
                         Text="{Binding SelectedItem.IDMed, ElementName=dgMedecins, Mode=TwoWay}" />
                 <TextBlock Grid.Row="3" Name="tIDPat" Text="ID du patient" VerticalAlignment="Center" />
-                <TextBox Name="tbIDPat" Grid.Row="3" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDPat" Grid.Row="3" Grid.Column="1" Margin="8" IsReadOnly="True"
                         Text="{Binding SelectedItem.IDPat, ElementName=dgPatients, Mode=TwoWay}" />
                 <TextBlock Grid.Row="4" Name="tIDType" Text="ID du type de soin" VerticalAlignment="Center" />
-                <TextBox Name="tbIDType" Grid.Row="4" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDType" Grid.Row="4" Grid.Column="1" Margin="8" IsReadOnly="True"
                          Text="{Binding SelectedItem.IDSoin, ElementName=dgSoins, Mode=TwoWay}" />
                 <TextBlock Grid.Row="5" Name="tIDMedi" Text="ID du médicament" VerticalAlignment="Center" />
-                <TextBox Name="tbIDMedi" Grid.Row="5" Grid.Column="1" Margin="8"
+                <TextBox Name="tbIDMedi" Grid.Row="5" Grid.Column="1" Margin="8" IsReadOnly="True"
                          Text="{Binding SelectedItem.IDMedi, ElementName=dgMedicaments, Mode=TwoWay}" />
                 <TextBlock Grid.Row="6" Name="tDateOpe" Text="Date du soin" VerticalAlignment="Center" />
                 <DatePicker Grid.Row="6" Grid.Column="1" Name="DateOperationPicker" Margin="8"></DatePicker>

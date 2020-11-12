@@ -13,7 +13,7 @@ namespace Gestion_Hopital.ViewModel
     {
         #region Données Écran
         private string chConnexion = @"Data Source=DESKTOP-GES02KU;Initial Catalog=BD_Hopital;Integrated Security=True";
-        private int nAjout, _i = 0;
+        private int _i = 0;
         #endregion
 
         #region Données extérieures
