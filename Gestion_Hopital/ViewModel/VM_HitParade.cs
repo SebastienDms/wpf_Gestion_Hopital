@@ -23,7 +23,7 @@ namespace Gestion_Hopital.ViewModel
         #endregion
         public VM_HitParade()
         {
-            ListHitParade = ChargerHitParades();
+            ListHitParade = OrderByDescending(ChargerHitParades());
         }
         private ObservableCollection<HitParade> ChargerHitParades()
         {
@@ -53,6 +53,18 @@ namespace Gestion_Hopital.ViewModel
             }
 
             return nbrOperation;
+        }
+
+        private ObservableCollection<HitParade> OrderByDescending(ObservableCollection<HitParade> lHitParades)
+        {
+            var lTmp = lHitParades.OrderByDescending(El => El.NombreOperationMed).ToList();
+            lHitParades.Clear();
+            foreach (var hitParade in lTmp)
+            {
+                lHitParades.Add(hitParade);
+            }
+
+            return lHitParades;
         }
         public class HitParade
         {

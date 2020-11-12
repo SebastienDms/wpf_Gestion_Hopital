@@ -8,10 +8,10 @@
         Title="HitParade" Height="450" Width="400">
     <Grid>
         <DataGrid Name="dgHitParade" ItemsSource="{Binding Path=ListHitParade}" IsReadOnly="True"
-                  CanUserSortColumns="False" >
+                  CanUserSortColumns="False" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Médecin" Binding="{Binding NomPrenomMed}" Width="*" />
-                <DataGridTextColumn Header="Nombre d'opérations" Binding="{Binding NombreOperationMed}" Width="*" SortDirection="Descending" />
+                <DataGridTextColumn Header="Nombre d'opérations" Binding="{Binding NombreOperationMed}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
