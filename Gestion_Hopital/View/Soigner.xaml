@@ -65,7 +65,7 @@
                 <DataGridTextColumn Visibility="Hidden" Binding="{Binding Path=IDSoin}" />
                 <DataGridTextColumn Header="ID du médecin" Binding="{Binding Path=IDMed}" Width="Auto" />
                 <DataGridTextColumn Header="ID du patient" Binding="{Binding Path=IDPat}" Width="Auto" />
-                <DataGridTextColumn Header="ID du type de soin" Binding="{Binding Path=IDtyp}" Width="Auto" />
+                <DataGridTextColumn Header="ID du type de soin" Binding="{Binding Path=IDTyp}" Width="Auto" />
                 <DataGridTextColumn Header="ID du médicament" Binding="{Binding Path=IDMedi}" Width="Auto" />
                 <DataGridTextColumn Header="Date du soin" Binding="{Binding Path=DateOperation}" Width="Auto" />
             </DataGrid.Columns>

@@ -65,7 +65,7 @@ namespace Gestion_Hopital.Model
        tmp.IDMed = int.Parse(dr["IDMed"].ToString());
        tmp.IDPat = int.Parse(dr["IDPat"].ToString());
        tmp.IDTyp = int.Parse(dr["IDTyp"].ToString());
-       tmp.IDTyp = int.Parse(dr["IDMedi"].ToString());
+       tmp.IDMedi = int.Parse(dr["IDMedi"].ToString());
        tmp.DateOperation = DateTime.Parse(dr["DateOperation"].ToString());
        res.Add(tmp);
    }
