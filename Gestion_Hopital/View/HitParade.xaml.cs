@@ -9,7 +9,6 @@ namespace Gestion_Hopital.View
     public partial class HitParade : Window
     {
         #region Données
-
         private VM_HitParade _vmHitParade;
         #endregion
 

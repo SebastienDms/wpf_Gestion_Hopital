@@ -60,6 +60,7 @@
     <Compile Include="ViewModel\Base.cs" />
     <Compile Include="ViewModel\VM_Chambres.cs" />
     <Compile Include="ViewModel\VM_DispoChambre.cs" />
+    <Compile Include="ViewModel\VM_FacturationDuJour.cs" />
     <Compile Include="ViewModel\VM_HitParade.cs" />
     <Compile Include="ViewModel\VM_Patients.cs" />
     <Compile Include="ViewModel\VM_Medecins.cs" />
@@ -70,6 +71,9 @@
     <Compile Include="ViewModel\VM_Specialites.cs" />
     <Compile Include="View\Chambres.xaml.cs">
       <DependentUpon>Chambres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FacturationDuJour.xaml.cs">
+      <DependentUpon>FacturationDuJour.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HitParade.xaml.cs">
       <DependentUpon>HitParade.xaml</DependentUpon>
@@ -108,6 +112,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Chambres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FacturationDuJour.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
