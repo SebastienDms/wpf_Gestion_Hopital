@@ -31,23 +31,21 @@ namespace Gestion_Hopital.ViewModel
         public bool ActiverBouton
         {
             get => _activerBouton;
-            set
-            {
-                if (ListFacturesDuJour.Count == 0)
-                {
-                    _activerBouton = false;
-                }
-                else
-                {
-                    _activerBouton = true;
-                }
-            }
+            set { AssignerChamp<bool>(ref _activerBouton, value, System.Reflection.MethodBase.GetCurrentMethod().Name);}
         }
 
         public VM_FacturationDuJour()
         {
             ListFacturesDuJour = AFacturer();
             cFacturer = new BaseCommande(Facturer);
+            if (ListFacturesDuJour.Count == 0)
+            {
+                ActiverBouton = false;
+            }
+            else
+            {
+                ActiverBouton = true;
+            }
         }
         private ObservableCollection<FacturationDuJour> AFacturer()
         {
@@ -114,11 +112,10 @@ namespace Gestion_Hopital.ViewModel
                             factureClient.NumChambre = c.NomCha.ToString();
                         }
                     }
+
+                    _listFacture.Add(factureClient);
                 }
-
-                _listFacture.Add(factureClient);
             }
-
             return _listFacture;
         }
 

@@ -23,7 +23,6 @@ namespace Gestion_Hopital.View
         #region Données
         private VM_FacturationDuJour _vmFacturationDuJour;
         #endregion
-
         #region Accesseurs
         public VM_FacturationDuJour VmFacturationDuJour
         {
@@ -35,7 +34,8 @@ namespace Gestion_Hopital.View
         {
             InitializeComponent();
             VmFacturationDuJour = new VM_FacturationDuJour();
-            dgFacturation.DataContext = VmFacturationDuJour;
+            DataContext = VmFacturationDuJour;
+            //btnFacturation.DataContext =dgFacturation.DataContext = VmFacturationDuJour;
         }
 
     }

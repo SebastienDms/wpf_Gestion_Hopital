@@ -20,6 +20,7 @@
                 <DataGridTextColumn Header="Au" Binding="{Binding Path=DateSortie}" Width="Auto" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="1" Height="50" Width="150" Name="btnFacturation" Content="Facturation du jour" Command="{Binding cFacturer}" />
+        <Button Grid.Column="1" Height="50" Width="150" Name="btnFacturation" Content="Facturation du jour"
+                Command="{Binding cFacturer}" IsEnabled="{Binding ActiverBouton, Mode=OneWay}" />
     </Grid>
 </Window>
