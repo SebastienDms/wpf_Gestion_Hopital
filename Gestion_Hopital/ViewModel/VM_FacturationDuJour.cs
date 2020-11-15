@@ -16,6 +16,7 @@ namespace Gestion_Hopital.ViewModel
     {
         #region Données Écran
         private string chConnexion = @"Data Source=DESKTOP-GES02KU;Initial Catalog=BD_Hopital;Integrated Security=True";
+        private bool _activerBouton;
         #endregion
         #region Données extérieures
         private ObservableCollection<FacturationDuJour> _listFacturesDuJour = new ObservableCollection<FacturationDuJour>();
@@ -26,6 +27,22 @@ namespace Gestion_Hopital.ViewModel
         }
         #endregion
         public BaseCommande cFacturer { get; set; }
+
+        public bool ActiverBouton
+        {
+            get => _activerBouton;
+            set
+            {
+                if (ListFacturesDuJour.Count == 0)
+                {
+                    _activerBouton = false;
+                }
+                else
+                {
+                    _activerBouton = true;
+                }
+            }
+        }
 
         public VM_FacturationDuJour()
         {

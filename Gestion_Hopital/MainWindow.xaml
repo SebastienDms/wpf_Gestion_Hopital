@@ -32,7 +32,7 @@
             <Button Name="btnQuitter" Content="Quitter" Width="100" Margin="5" Click="btnQuitter_Click"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Top" Height="40" Margin="410,41">
-            <Button Name="btn1" Content="Facturation" Width="100" Margin="5" Click="btnMedecins_Click"/>
+            <Button Name="btnFacturation" Content="Facturation" Width="100" Margin="5" Click="btnFacturation_Click"/>
             <Button Name="btn2" Content="Hit-parade" Width="100" Margin="5" Click="btnHitParade_Click"/>
             <Button Name="btn3" Content="Occupations hebdomadaires" Width="160" Margin="5,5" Click="btnPatients_Click"/>
             <Button Name="btn4" Content="Confirmation prestation" Width="150" Margin="5" Click="btnChambres_Click"/>

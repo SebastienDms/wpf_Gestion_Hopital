@@ -180,6 +180,11 @@ namespace Gestion_Hopital
             HitParade fenHitParade = new HitParade();
             fenHitParade.ShowDialog();
         }
+        private void btnFacturation_Click(object sender, RoutedEventArgs e)
+        {
+            FacturationDuJour fenFacturationDuJour = new FacturationDuJour();
+            fenFacturationDuJour.ShowDialog();
+        }
         public void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
             Close();
