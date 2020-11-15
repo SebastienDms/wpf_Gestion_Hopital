@@ -84,6 +84,8 @@ namespace Gestion_Hopital.ViewModel
                             {
                                 if (soig.DateOperation >= o.DateEntree && soig.DateOperation <= o.DateSortie && soig.IDPat == p.IDPat)
                                 {
+                                    List<SoinsRecu> listTmpS = new List<SoinsRecu>();
+
                                     foreach (var soin in lTmpSoin)
                                     {
                                         if (soig.IDTyp == soin.IDSoin)
@@ -91,9 +93,12 @@ namespace Gestion_Hopital.ViewModel
                                             SoinsRecu tmpSoinsRecu = new SoinsRecu();
                                             tmpSoinsRecu.Nom = soin.NomSoin;
                                             tmpSoinsRecu.Prix = soin.PrixSoin;
-                                            factureClient.ListSoinsRecus.Add(tmpSoinsRecu);
+                                            listTmpS.Add(tmpSoinsRecu);
                                         }
                                     }
+                                    factureClient.ListSoinsRecus = listTmpS;
+
+                                    List<MedicamentsRecu> listTmpM = new List<MedicamentsRecu>();
 
                                     foreach (var medicament in lTmpMedi)
                                     {
@@ -102,9 +107,10 @@ namespace Gestion_Hopital.ViewModel
                                             MedicamentsRecu tmpMedicamentsRecu = new MedicamentsRecu();
                                             tmpMedicamentsRecu.Nom = medicament.NomMedi;
                                             tmpMedicamentsRecu.Prix = medicament.PrixMedi;
-                                            factureClient.ListMedicamentsRecus.Add(tmpMedicamentsRecu);
+                                            listTmpM.Add(tmpMedicamentsRecu);
                                         }
                                     }
+                                    factureClient.ListMedicamentsRecus = listTmpM;
                                 }
                             }
                         }
@@ -127,6 +133,9 @@ namespace Gestion_Hopital.ViewModel
         {
             Thread tFacture = new Thread(GenererFacture);
             tFacture.Start();
+
+            MessageBox.Show("Facturation terminée...", "Information!", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         private void GenererFacture()
@@ -144,6 +153,7 @@ namespace Gestion_Hopital.ViewModel
                 p.Inlines.Add(new Run("Séjour du " + factureClient.DateEntree + " au " + factureClient.DateSortie + "."));
                 p.Inlines.Add(new LineBreak());
                 p.Inlines.Add(new Run(factureClient.NbrJour + " prix par jour " + factureClient.PrixJournalier + " total: " + factureClient.PrixSejour + "."));
+                p.Inlines.Add(new LineBreak());
                 fd.Blocks.Add(p);
                 try
                 {
@@ -151,23 +161,25 @@ namespace Gestion_Hopital.ViewModel
                     foreach (var soinsRecus in factureClient.ListSoinsRecus)
                     {
                         p2.Inlines.Add(new Run(soinsRecus.Nom + " : " + soinsRecus.Prix.ToString()));
-                        p.Inlines.Add(new LineBreak());
+                        p2.Inlines.Add(new LineBreak());
                         sousTotalSoins += soinsRecus.Prix;
                     }
                     fd.Blocks.Add(p2);
                     Paragraph p3 = new Paragraph(new Run("Prix total des soins : " + sousTotalSoins.ToString()));
+                    p3.Inlines.Add(new LineBreak());
                     fd.Blocks.Add(p3);
                     Paragraph p4 = new Paragraph();
                     foreach (var medicamentsRecus in factureClient.ListMedicamentsRecus)
                     {
                         p4.Inlines.Add(new Run(medicamentsRecus.Nom + " : " + medicamentsRecus.Prix.ToString()));
-                        p.Inlines.Add(new LineBreak());
+                        p4.Inlines.Add(new LineBreak());
                         sousTotalMedicaments += medicamentsRecus.Prix;
                     }
                     fd.Blocks.Add(p4);
                     Paragraph p5 = new Paragraph(new Run("Prix total des médicaments : " + sousTotalMedicaments.ToString()));
+                    p5.Inlines.Add(new LineBreak());
                     fd.Blocks.Add(p5);
-                    Paragraph p6 = new Paragraph(new Run("Prix total : " + (sousTotalSoins+sousTotalMedicaments).ToString()));
+                    Paragraph p6 = new Paragraph(new Run("Prix total : " + (factureClient.PrixSejour+sousTotalSoins+sousTotalMedicaments).ToString()));
                     fd.Blocks.Add(p6);
                 }
                 catch (Exception)
@@ -177,10 +189,8 @@ namespace Gestion_Hopital.ViewModel
                 FileStream fs = new FileStream(@"d:\facture.rtf", FileMode.Create);
                 TextRange tr = new TextRange(fd.ContentStart, fd.ContentEnd);
                 tr.Save(fs, System.Windows.DataFormats.Rtf);
+                fs.Close();
             }
-
-            MessageBox.Show("Facturation terminée...", "Information!", MessageBoxButton.OK,
-                MessageBoxImage.Information);
         }
         public class FacturationDuJour
         {
