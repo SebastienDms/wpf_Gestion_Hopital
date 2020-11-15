@@ -66,7 +66,10 @@ namespace Gestion_Hopital.ViewModel
                     factureClient.DateEntree = o.DateEntree.ToShortDateString();
                     factureClient.DateSortie = o.DateSortie.ToShortDateString();
                     factureClient.PrixJournalier = o.PrixJournalier;
+                     
                     factureClient.NbrJour = (o.DateEntree - o.DateSortie).Days;
+                    /* Offset d'un jour */
+                    factureClient.NbrJour++;
                     factureClient.PrixSejour = factureClient.NbrJour * factureClient.PrixJournalier;
 
                     foreach (C_t_patients p in lTmpPat)
