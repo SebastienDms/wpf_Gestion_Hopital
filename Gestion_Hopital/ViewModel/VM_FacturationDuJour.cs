@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Gestion_Hopital.Model;
 using System.Windows.Documents;
 
@@ -141,6 +142,7 @@ namespace Gestion_Hopital.ViewModel
                 p.Inlines.Add(new Run(factureClient.NomPrenomPat + " " +factureClient.AdressePat));
                 p.Inlines.Add(new LineBreak());
                 p.Inlines.Add(new Run("Séjour du " + factureClient.DateEntree + " au " + factureClient.DateSortie + "."));
+                p.Inlines.Add(new LineBreak());
                 p.Inlines.Add(new Run(factureClient.NbrJour + " prix par jour " + factureClient.PrixJournalier + " total: " + factureClient.PrixSejour + "."));
                 fd.Blocks.Add(p);
                 try
@@ -172,10 +174,13 @@ namespace Gestion_Hopital.ViewModel
                 {
                 }
                 /* Sauvegarde du ficher */
-                FileStream fs = new FileStream(@"d:\essai.rtf", FileMode.Create);
+                FileStream fs = new FileStream(@"d:\facture.rtf", FileMode.Create);
                 TextRange tr = new TextRange(fd.ContentStart, fd.ContentEnd);
                 tr.Save(fs, System.Windows.DataFormats.Rtf);
             }
+
+            MessageBox.Show("Facturation terminée...", "Information!", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
         public class FacturationDuJour
         {
