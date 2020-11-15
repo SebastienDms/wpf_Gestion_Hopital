@@ -140,28 +140,34 @@ namespace Gestion_Hopital.ViewModel
                 p.Inlines.Add(new Run("Séjour du " + factureClient.DateEntree + " au " + factureClient.DateSortie + "."));
                 p.Inlines.Add(new Run(factureClient.NbrJour + " prix par jour " + factureClient.PrixJournalier + " total: " + factureClient.PrixSejour + "."));
                 fd.Blocks.Add(p);
-                Paragraph p2 = new Paragraph();
-                foreach (var soinsRecus in factureClient.ListSoinsRecus)
+                try
                 {
-                    p2.Inlines.Add(new Run(soinsRecus.Nom + " : " + soinsRecus.Prix.ToString()));
-                    p.Inlines.Add(new LineBreak());
-                    sousTotalSoins += soinsRecus.Prix;
+                    Paragraph p2 = new Paragraph();
+                    foreach (var soinsRecus in factureClient.ListSoinsRecus)
+                    {
+                        p2.Inlines.Add(new Run(soinsRecus.Nom + " : " + soinsRecus.Prix.ToString()));
+                        p.Inlines.Add(new LineBreak());
+                        sousTotalSoins += soinsRecus.Prix;
+                    }
+                    fd.Blocks.Add(p2);
+                    Paragraph p3 = new Paragraph(new Run("Prix total des soins : " + sousTotalSoins.ToString()));
+                    fd.Blocks.Add(p3);
+                    Paragraph p4 = new Paragraph();
+                    foreach (var medicamentsRecus in factureClient.ListMedicamentsRecus)
+                    {
+                        p4.Inlines.Add(new Run(medicamentsRecus.Nom + " : " + medicamentsRecus.Prix.ToString()));
+                        p.Inlines.Add(new LineBreak());
+                        sousTotalMedicaments += medicamentsRecus.Prix;
+                    }
+                    fd.Blocks.Add(p4);
+                    Paragraph p5 = new Paragraph(new Run("Prix total des médicaments : " + sousTotalMedicaments.ToString()));
+                    fd.Blocks.Add(p5);
+                    Paragraph p6 = new Paragraph(new Run("Prix total : " + (sousTotalSoins+sousTotalMedicaments).ToString()));
+                    fd.Blocks.Add(p6);
                 }
-                fd.Blocks.Add(p2);
-                Paragraph p3 = new Paragraph(new Run("Prix total des soins : " + sousTotalSoins.ToString()));
-                fd.Blocks.Add(p3);
-                Paragraph p4 = new Paragraph();
-                foreach (var medicamentsRecus in factureClient.ListMedicamentsRecus)
+                catch (Exception)
                 {
-                    p4.Inlines.Add(new Run(medicamentsRecus.Nom + " : " + medicamentsRecus.Prix.ToString()));
-                    p.Inlines.Add(new LineBreak());
-                    sousTotalMedicaments += medicamentsRecus.Prix;
                 }
-                fd.Blocks.Add(p4);
-                Paragraph p5 = new Paragraph(new Run("Prix total des médicaments : " + sousTotalMedicaments.ToString()));
-                fd.Blocks.Add(p5);
-                Paragraph p6 = new Paragraph(new Run("Prix total : " + (sousTotalSoins+sousTotalMedicaments).ToString()));
-                fd.Blocks.Add(p6);
                 /* Sauvegarde du ficher */
                 FileStream fs = new FileStream(@"d:\essai.rtf", FileMode.Create);
                 TextRange tr = new TextRange(fd.ContentStart, fd.ContentEnd);
