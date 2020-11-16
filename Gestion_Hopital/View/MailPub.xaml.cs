@@ -23,16 +23,14 @@ namespace Gestion_Hopital.View
     /// </summary>
     public partial class MailPub : Window
     {
+        #region données
         private VM_MailPub _vmMailPub;
         private string _attachmentPath = "";
         private string _serverName = "SMTP.office365.com";
         private int _serverPort = 587;
-        public MailPub()
-        {
-            InitializeComponent();
-            VmMailPub = new VM_MailPub();
-            DataContext = VmMailPub;
-        }
+        #endregion
+
+        #region Accesseurs
         public string AttachmentPath
         {
             get => _attachmentPath;
@@ -56,7 +54,13 @@ namespace Gestion_Hopital.View
             get => _serverPort;
             set => _serverPort = value;
         }
-
+        #endregion
+        public MailPub()
+        {
+            InitializeComponent();
+            VmMailPub = new VM_MailPub();
+            DataContext = VmMailPub;
+        }
 
         private void dgPatientsMail_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
