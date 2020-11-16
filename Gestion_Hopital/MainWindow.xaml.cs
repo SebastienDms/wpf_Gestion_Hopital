@@ -185,6 +185,11 @@ namespace Gestion_Hopital
             FacturationDuJour fenFacturationDuJour = new FacturationDuJour();
             fenFacturationDuJour.ShowDialog();
         }
+        private void btnOccupationsHebdo_Click(object sender, RoutedEventArgs e)
+        {
+            OccupationChambre fenOccupationChambre = new OccupationChambre();
+            fenOccupationChambre.ShowDialog();
+        }
         public void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
             Close();
