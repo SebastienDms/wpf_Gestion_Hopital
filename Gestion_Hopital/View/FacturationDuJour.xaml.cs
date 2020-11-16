@@ -35,7 +35,6 @@ namespace Gestion_Hopital.View
             InitializeComponent();
             VmFacturationDuJour = new VM_FacturationDuJour();
             DataContext = VmFacturationDuJour;
-            //btnFacturation.DataContext =dgFacturation.DataContext = VmFacturationDuJour;
         }
 
     }

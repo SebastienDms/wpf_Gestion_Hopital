@@ -84,6 +84,9 @@
     <Compile Include="View\Medicaments.xaml.cs">
       <DependentUpon>Medicaments.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OccupationChambre.xaml.cs">
+      <DependentUpon>OccupationChambre.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Occuper.xaml.cs">
       <DependentUpon>Occuper.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Medicaments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OccupationChambre.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
