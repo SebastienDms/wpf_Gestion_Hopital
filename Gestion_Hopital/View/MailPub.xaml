@@ -1,0 +1,60 @@
+﻿<Window x:Class="Gestion_Hopital.View.MailPub"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestion_Hopital.View"
+        mc:Ignorable="d"
+        Title="MailPub" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="dgPatientsMail" ItemsSource="{Binding Path=ListAdresseMails}" Grid.Row="3" VerticalScrollBarVisibility="Visible"
+                  IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding Path=ActiverBcpFiche, Mode=OneWay}"
+                  SelectedItem="{Binding PersonneSelectionnee, Mode=TwoWay}" SelectionChanged="dgPatientsMail_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Patients" Binding="{Binding Path=NomPrenomPatient}" />
+                <DataGridTextColumn Header="Adresses mails" Binding="{Binding Path=Mail}" Width="Auto" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Name="tLogin" Text="Login : " />
+                <TextBox Grid.Row="0" Grid.Column="1" Name="tbLogin" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Name="tPassword" Text="Password : " />
+                <PasswordBox Grid.Row="1" Grid.Column="1" Name="tbPassword" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Name="tTo" Text="To : " />
+                <TextBox Grid.Row="2" Grid.Column="1" Name="tbTo" Text="{Binding SelectedItem.Mail, ElementName=dgPatientsMail}" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Name="tObject" Text="Object : " />
+                <TextBox Grid.Row="3" Grid.Column="1" Name="tbObject" />
+            </Grid>
+            <Button Grid.Row="1" Height="20" Name="btnAttachment" Content="Attachment" Click="BtnAttachment_OnClick" />
+            <RichTextBox Grid.Row="2" Height="200" Name="rtbBody" />
+            <Button Grid.Row="3" Height="20" Name="btnSendMail" Content="E N V O Y E R" Click="BtnSendMail_OnClick" />
+        </Grid>
+    </Grid>
+</Window>

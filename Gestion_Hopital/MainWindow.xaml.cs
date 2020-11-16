@@ -190,6 +190,12 @@ namespace Gestion_Hopital
             OccupationChambre fenOccupationChambre = new OccupationChambre();
             fenOccupationChambre.ShowDialog();
         }
+        private void btnMail_Click(object sender, RoutedEventArgs e)
+        {
+            MailPub fenMailPub = new MailPub();
+            fenMailPub.ShowDialog();
+        }
+
         public void btnQuitter_Click(object sender, RoutedEventArgs e)
         {
             Close();

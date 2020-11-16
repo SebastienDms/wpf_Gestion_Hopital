@@ -62,6 +62,7 @@
     <Compile Include="ViewModel\VM_DispoChambre.cs" />
     <Compile Include="ViewModel\VM_FacturationDuJour.cs" />
     <Compile Include="ViewModel\VM_HitParade.cs" />
+    <Compile Include="ViewModel\VM_MailPub.cs" />
     <Compile Include="ViewModel\VM_Patients.cs" />
     <Compile Include="ViewModel\VM_Medecins.cs" />
     <Compile Include="ViewModel\VM_Medicaments.cs" />
@@ -77,6 +78,9 @@
     </Compile>
     <Compile Include="View\HitParade.xaml.cs">
       <DependentUpon>HitParade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MailPub.xaml.cs">
+      <DependentUpon>MailPub.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Medecins.xaml.cs">
       <DependentUpon>Medecins.xaml</DependentUpon>
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HitParade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MailPub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

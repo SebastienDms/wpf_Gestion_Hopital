@@ -36,7 +36,7 @@
             <Button Name="btn2" Content="Hit-parade" Width="100" Margin="5" Click="btnHitParade_Click"/>
             <Button Name="btnOccupationsHebdo" Content="Occupations hebdomadaires" Width="160" Margin="5,5" Click="btnOccupationsHebdo_Click"/>
             <Button Name="btn4" Content="Confirmation prestation" Width="150" Margin="5" Click="btnChambres_Click"/>
-            <Button Name="btn5" Content="Mail" Width="100" Margin="5" Click="btnMedicaments_Click"/>
+            <Button Name="btnMail" Content="Mail" Width="100" Margin="5" Click="btnMail_Click"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
