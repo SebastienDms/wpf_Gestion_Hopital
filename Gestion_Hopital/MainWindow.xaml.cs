@@ -264,5 +264,9 @@ namespace Gestion_Hopital
         { DateOperationPicker.Text = tbIDSoig.Text = tbIDPat.Text = tbIDMed.Text = tbIDType.Text = tbIDMedi.Text = string.Empty; }
         #endregion
 
+        private void btnConfirmatinPrestation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
