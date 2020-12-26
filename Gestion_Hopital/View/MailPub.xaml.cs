@@ -87,7 +87,17 @@ namespace Gestion_Hopital.View
                 SmtpClient smtpClient = new SmtpClient(ServerName, ServerPort);
 
                 mail.From = new MailAddress(tbLogin.Text);
-                mail.To.Add(tbTo.Text);
+                if (tbTo.Text=="")
+                {
+                    foreach (var eMail in VmMailPub.ListAdresseMails)
+                    {
+                        mail.To.Add(eMail.Mail);
+                    }
+                }
+                else
+                {
+                    mail.To.Add(tbTo.Text);
+                }
                 mail.Subject = tbObject.Text;
                 mail.Body = new TextRange(rtbBody.Document.ContentStart, rtbBody.Document.ContentEnd).Text;
 
