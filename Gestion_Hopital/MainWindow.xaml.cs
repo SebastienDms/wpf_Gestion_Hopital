@@ -190,6 +190,12 @@ namespace Gestion_Hopital
             OccupationChambre fenOccupationChambre = new OccupationChambre();
             fenOccupationChambre.ShowDialog();
         }
+        private void btnConfirmatinPrestation_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmationPrestation fenConfirmationPrestation = new ConfirmationPrestation();
+            fenConfirmationPrestation.ShowDialog();
+        }
+
         private void btnMail_Click(object sender, RoutedEventArgs e)
         {
             MailPub fenMailPub = new MailPub();
@@ -264,9 +270,5 @@ namespace Gestion_Hopital
         { DateOperationPicker.Text = tbIDSoig.Text = tbIDPat.Text = tbIDMed.Text = tbIDType.Text = tbIDMedi.Text = string.Empty; }
         #endregion
 
-        private void btnConfirmatinPrestation_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
