@@ -68,7 +68,7 @@ namespace Gestion_Hopital.ViewModel
                     tmpPatient.Mail = patient.Mail;
                     tmpPatient.Nom = patient.Nom;
                     tmpPatient.Prenom = patient.Prenom;
-                    tmpList.Add(tmpPatient);
+                    tmpListMail.Add(tmpPatient);
                 }
             }
             return tmpListMail;
