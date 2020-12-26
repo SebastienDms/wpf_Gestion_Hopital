@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -73,7 +76,7 @@ namespace Gestion_Hopital.View
             p.Inlines.Add(new LineBreak());
             p.Inlines.Add(new Run("Liste des personnes encodées"));
             fd.Blocks.Add(p);
-            Paragraph p2 = new Paragraph(new Run(patient.Nom + " " + patient.Prenom + " " + patient.DateRdv + "."));
+            Paragraph p2 = new Paragraph(new Run(patient.Nom + " " + patient.Prenom + "."));
             fd.Blocks.Add(p2);
             Paragraph p3 = new Paragraph(new Run("Votre entrée en hopital le " + patient.DateRdv + " est confirmée."));
             fd.Blocks.Add(p3);
@@ -82,7 +85,56 @@ namespace Gestion_Hopital.View
 
         private void BtnSendMail_OnClick(object sender, RoutedEventArgs e)
         {
+            int i = 1;
+            foreach (var patient in VmConfirmationPrestation.ListPatientAConfirmer)
+            {
+                FlowDocument fd = new FlowDocument();
+                Paragraph p = new Paragraph();
+                p.Inlines.Add(new Bold(new Run("Confirmation de votre Rendez-vous")));
+                p.Inlines.Add(new LineBreak());
+                p.Inlines.Add(new Run("Madame,Monsieur,"));
+                fd.Blocks.Add(p);
+                Paragraph p2 = new Paragraph(new Run(patient.Nom + " " + patient.Prenom + "."));
+                fd.Blocks.Add(p2);
+                Paragraph p3 = new Paragraph(new Run("Votre entrée en hopital le " + patient.DateRdv + " est confirmée."));
+                fd.Blocks.Add(p3);
+                rtbDoc.Document = fd;
 
+                FileStream fs = new FileStream(@"d:\confirmation_"+ patient.Nom + "_" + patient.Prenom +"_" + i.ToString() +".rtf", FileMode.Create);
+                TextRange tr = new TextRange(rtbDoc.Document.ContentStart, rtbDoc.Document.ContentEnd);
+
+                if (patient.Mail != String.Empty)
+                {
+                    try
+                    {
+                        MailMessage mail = new MailMessage();
+                        SmtpClient smtpClient = new SmtpClient(ServerName, ServerPort);
+
+                        mail.From = new MailAddress("info@hopital.be");
+                        mail.To.Add(patient.Mail);
+                        mail.Subject = "Confirmation de votre rendez-vous.";
+                        mail.Body = tr.Text;
+
+                        if (!string.IsNullOrEmpty(AttachmentPath))
+                        {
+                            Attachment attachmentMail = new Attachment(AttachmentPath);
+                            mail.Attachments.Add(attachmentMail);
+                        }
+
+                        smtpClient.Credentials = new NetworkCredential(tbLogin.Text, tbPassword.Password);
+                        smtpClient.EnableSsl = true;
+
+                        smtpClient.Send(mail);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Erreur dans les paramètres...");
+                    }
+                }
+
+                tr.Save(fs, System.Windows.DataFormats.Rtf);
+                i++;
+            }
         }
     }
 }
