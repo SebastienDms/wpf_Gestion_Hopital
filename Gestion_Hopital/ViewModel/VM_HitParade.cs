@@ -11,7 +11,7 @@ namespace Gestion_Hopital.ViewModel
     public class VM_HitParade : BasePropriete
     {
         #region Données Écran
-        private string chConnexion = @"Data Source=DESKTOP-GES02KU;Initial Catalog=BD_Hopital;Integrated Security=True";
+        private string chConnexion = @"Data Source=DESKTOP-KJ2N7R1;Initial Catalog=BD_Hopital_2;Integrated Security=True";
         #endregion
         #region Données extérieures
         private ObservableCollection<HitParade> _listHitParade = new ObservableCollection<HitParade>();

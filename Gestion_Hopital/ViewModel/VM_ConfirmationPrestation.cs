@@ -10,7 +10,7 @@ namespace Gestion_Hopital.ViewModel
     public class VM_ConfirmationPrestation
     {
         #region Données
-        private string chConnexion = @"Data Source=DESKTOP-GES02KU;Initial Catalog=BD_Hopital;Integrated Security=True";
+        private string chConnexion = @"Data Source=DESKTOP-KJ2N7R1;Initial Catalog=BD_Hopital_2;Integrated Security=True";
         private List<PatientAConfirmer> _listPatientAConfirmer;
         private List<PatientAConfirmer> _listPatientAConfirmerMail;
 
